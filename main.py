@@ -40,14 +40,6 @@ def process(image_id: int):
     return Response(png.tobytes())
 
 
-@app.post("/api/images")
-async def upload_image(file: UploadFile):
-    global files
-    path = folder / Path(file.filename).name
-    path.write_bytes(await file.read())
-    files = get_files()
-    return {"name": path.name}
-
 
 if __name__ == "__main__":
     import uvicorn
